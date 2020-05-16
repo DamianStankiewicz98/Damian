@@ -1,0 +1,26 @@
+     FIRMA sp. z o.o.
+   65-246  Zielona Góra
+      ul. Podgórna 50
+    NIP: 012-345-67-89
+
+2020-05-11           18:31
+#001                Damian
+ - - - - - - - - - - - - -
+     PARAGON FISKALNY
+ - - - - - - - - - - - - -
+Hamburger  
+             2x11,99 23,98
+Coca-Cola  
+               1x5,99 5,99
+Frytki     
+               2x3,99 7,98
+Nuggetsy   
+             1x14,59 14,59
+ - - - - - - - - - - - - -
+SUMA:            PLN 52,54
+ - - - - - - - - - - - - -
+Płatność kartą       52,54
+
+P.fisk.            Nr 0001
+       AFN 12345678
+   ZAPRASZAMY PONOWNIE

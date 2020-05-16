@@ -1,0 +1,13 @@
+C:\Users\Damian\source\repos\Paragon\Paragon\obj\Debug\netcoreapp3.1\Paragon.csproj.CoreCompileInputs.cache
+C:\Users\Damian\source\repos\Paragon\Paragon\obj\Debug\netcoreapp3.1\Paragon.AssemblyInfoInputs.cache
+C:\Users\Damian\source\repos\Paragon\Paragon\obj\Debug\netcoreapp3.1\Paragon.AssemblyInfo.cs
+C:\Users\Damian\source\repos\Paragon\Paragon\bin\Debug\netcoreapp3.1\Paragon.exe
+C:\Users\Damian\source\repos\Paragon\Paragon\bin\Debug\netcoreapp3.1\Paragon.deps.json
+C:\Users\Damian\source\repos\Paragon\Paragon\bin\Debug\netcoreapp3.1\Paragon.runtimeconfig.json
+C:\Users\Damian\source\repos\Paragon\Paragon\bin\Debug\netcoreapp3.1\Paragon.runtimeconfig.dev.json
+C:\Users\Damian\source\repos\Paragon\Paragon\bin\Debug\netcoreapp3.1\Paragon.dll
+C:\Users\Damian\source\repos\Paragon\Paragon\bin\Debug\netcoreapp3.1\Paragon.pdb
+C:\Users\Damian\source\repos\Paragon\Paragon\obj\Debug\netcoreapp3.1\Paragon.dll
+C:\Users\Damian\source\repos\Paragon\Paragon\obj\Debug\netcoreapp3.1\Paragon.pdb
+C:\Users\Damian\source\repos\Paragon\Paragon\obj\Debug\netcoreapp3.1\Paragon.genruntimeconfig.cache
+C:\Users\Damian\source\repos\Paragon\Paragon\obj\Debug\netcoreapp3.1\Paragon.csprojAssemblyReference.cache
