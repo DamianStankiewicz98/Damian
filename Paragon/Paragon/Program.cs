@@ -11,7 +11,7 @@ namespace Paragon
         {
             Worker prac1 = new Worker(1, "Damian");
 
-            Order ham = new Order("Hamburger", 11.99, 2);       // (nazwa, cena, ilosc)
+            Order ham = new Order("Hamburger", 11.99, 2);                                                                           // (nazwa, cena, ilosc)
             Order cola = new Order("Coca-Cola", 5.99, 1);
             Order chips = new Order("Frytki", 3.99, 2);
             Order nuggets = new Order("Nuggetsy", 14.59, 1);
@@ -29,51 +29,56 @@ namespace Paragon
 
             CustomerCash customer = new CustomerCash(100);
 
-            string nameFile = string.Format("paragon-{0:yyyy-MM-dd_hh-mm-ss-tt}.txt", DateTime.Now);    // nazwa pliku
-            StreamWriter sw = new StreamWriter(nameFile);                                               // tworzy plik .txt
+            string filePath = Path.Combine (Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Receipts");              // sciezka do folderu z paragonami
+            string nameFile = string.Format("Receipt-{0:yyyy-MM-dd_hh-mm-ss-tt}.txt", DateTime.Now);                                // nazwa pliku
+            string completeFilePath = Path.Combine(filePath, nameFile);
+            
+            if (!Directory.Exists(filePath))                                                                                        // tworzy folder jezeli nie istnieje
+                    Directory.CreateDirectory(filePath);
 
-            sw.WriteLine("     FIRMA sp. z o.o.");
-            sw.WriteLine("   65-246  Zielona Góra");
-            sw.WriteLine("      ul. Podgórna 50");
-            sw.WriteLine("    NIP: 012-345-67-89\n");
-
-            sw.WriteLine(String.Format("{0,-20:yyyy-MM-dd} {0,5:t}", DateTime.Now));          // data i godzina na paragonie
-            sw.WriteLine("#{0,-4:D3} {1,20}", prac1.getId, prac1.getName);                    // pracownik [id      nazwa]
-
-            sw.WriteLine(" - - - - - - - - - - - - -");
-            sw.WriteLine("     PARAGON FISKALNY");
-            sw.WriteLine(" - - - - - - - - - - - - -");
-
-
-
-            for (int ctr = 0; ctr < names.Length; ctr++)
+            using (StreamWriter sw = new StreamWriter(completeFilePath))                                                            // tworzy plik .txt
             {
+                sw.WriteLine("     FIRMA sp. z o.o.");
+                sw.WriteLine("   65-246  Zielona Góra");
+                sw.WriteLine("      ul. Podgórna 50");
+                sw.WriteLine("    NIP: 012-345-67-89\n");
+
+                sw.WriteLine(String.Format("{0,-20:yyyy-MM-dd} {0,5:t}", DateTime.Now));                                            // data i godzina na paragonie
+                sw.WriteLine("#{0,-4:D3} {1,20}", prac1.getId, prac1.getName);                                                      // pracownik [id      nazwa]
+
+                sw.WriteLine(" - - - - - - - - - - - - -");
+                sw.WriteLine("     PARAGON FISKALNY");
+                sw.WriteLine(" - - - - - - - - - - - - -");
+
+
+                for (int ctr = 0; ctr < names.Length; ctr++)
+                {
                     sw.WriteLine("{0,-11}\n{1,26:0.00}", names[ctr], amounts[ctr] + "x" + prices[ctr] + " " + prices[ctr] * amounts[ctr]);
+                }
+
+
+                sw.WriteLine(" - - - - - - - - - - - - -");
+                sw.WriteLine("{0,-5} {1,20:0.00}", "SUMA:", "PLN " + total_price);                                                  // suma cen zamowienia do zaplaty
+                sw.WriteLine(" - - - - - - - - - - - - -");
+
+                bool cash_or_card = true;
+                if (cash_or_card)                                                                                                   // kartą czy gotówką
+                {
+                    sw.WriteLine("{0,-10} {1,15:0.00}", "Gotówka:", customer.getCash);                                              // gotowka od klienta
+                    sw.WriteLine("{0,-10} {1,15:0.00}", "Reszta:", customer.getCash - total_price);                                 // reszta
+                }
+                else
+                {
+                    sw.WriteLine("{0,-14} {1,11:0.00}", "Płatność kartą", total_price);
+                }
+                                                                        
+                sw.WriteLine("\n{0,-7} {1,13} {2:D4}", "P.fisk.", "Nr", nr_paragonu);           // numer paragonu  !!!!!!!!!!!!!!!!!!!! [ do zrobienia ] !!!!!!!!!!!!!!!!!!!!!!!!
+                sw.WriteLine("       AFN 12345678");
+                sw.WriteLine("   ZAPRASZAMY PONOWNIE");
+                sw.Close();
             }
-
-
-            sw.WriteLine(" - - - - - - - - - - - - -");
-            sw.WriteLine("{0,-5} {1,20:0.00}", "SUMA:", "PLN " + total_price);                  // suma cen zamowienia do zaplaty
-            sw.WriteLine(" - - - - - - - - - - - - -");
-
-            bool cash_or_card = true;
-            if (cash_or_card)                                                                           // kartą czy gotówką
-            {   
-                sw.WriteLine("{0,-10} {1,15:0.00}", "Gotówka:", customer.getCash);                     // gotowka od klienta
-                sw.WriteLine("{0,-10} {1,15:0.00}", "Reszta:", customer.getCash - total_price);        // reszta
-            }
-            else
-            {
-                sw.WriteLine("{0,-14} {1,11:0.00}", "Płatność kartą", total_price);
-            }
-
-            nr_paragonu += 1 ;                                                                       // numer paragonu
-            sw.WriteLine("\n{0,-7} {1,13} {2:D4}", "P.fisk.","Nr", nr_paragonu);
-            sw.WriteLine("       AFN 12345678");
-            sw.WriteLine("   ZAPRASZAMY PONOWNIE");
-            sw.Close();
         }
-        class Order
+        class Order    // zamowienie
         {
             string name;
             double price;
@@ -91,7 +96,7 @@ namespace Paragon
             }
         }
 
-        class Worker
+        class Worker     // kasjer
         {
             int id;
             string name;
@@ -106,7 +111,7 @@ namespace Paragon
             }
         }
 
-        class CustomerCash
+        class CustomerCash     // gotowka od klienta
         {
             double cash;
 
